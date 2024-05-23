@@ -17,7 +17,7 @@ export class UserService {
   }
   
   static async getIsUnique(loginName: string): Promise<any> {
-    const apiKey = process.env.ZITADEL_API_KEY ?? 'API_KEY';
+    const apiKey = process.env.ORG_USER_MANAGER_TOKEN ?? 'API_KEY';
     let url = "";
 
     try {
@@ -93,7 +93,7 @@ export class UserService {
 
     // Create the user
     const url = `${process.env.AUTH_ISSUER}/management/v1/users/human/_import`;
-    const apiKey = process.env.ZITADEL_API_KEY ?? 'API_KEY';
+    const apiKey = process.env.ORG_USER_MANAGER_TOKEN ?? 'API_KEY';
 
     try {
       if (!await UserService.getIsUnique(username) || !await UserService.getIsUnique(emailAddress)) {

@@ -64,12 +64,12 @@ export class UserService {
       username: string;
       password?: string;
       hashedPassword?: string;
-      resourceId?: string;
       details?: {
         firstName?: string;
         lastName?: string;
       };
     },
+    organizationId?: string,
     createProfile?: boolean,
     skipEmailVerification?: boolean
   ): Promise<any> {
@@ -81,7 +81,7 @@ export class UserService {
 
     if (skipEmailVerification) {
       // If skipEmailVerification is true, then we need to check if the user is an admin on the resource
-      //await requireAdmin(context, [resourceId]);
+      //await requireAdmin(context, [organizationId]);
 
       // If skipEmailVerification is true, then the user is active
 
@@ -107,7 +107,7 @@ export class UserService {
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
-          ...(values.resourceId ? { 'x-zitadel-orgid': values.resourceId } : {}),
+          ...(organizationId ? { 'x-zitadel-orgid': organizationId } : {}),
           'Authorization': `Bearer ${apiKey}`,
         },
         body: JSON.stringify({

@@ -8,12 +8,9 @@ import { UserService } from "./user.service";
 export default defineService(
   {
     Query: {
-      hello() {
-        return "Hello, World!";
-      },
+      getIsUnique: UserService.getIsUnique,
     },
     Mutation: {
-      getIsUnique: UserService.getIsUnique,
       userCreate: UserService.userCreate,
     },
   },

@@ -21,18 +21,18 @@ RUN curl -L https://raw.githubusercontent.com/tj/n/master/bin/n -o n \
 
 RUN mkdir -p /temp/dev
 COPY package.json bun.lockb /temp/dev/
-COPY prisma /temp/dev/prisma
+#COPY prisma /temp/dev/prisma
 
 RUN cd /temp/dev && bun install --frozen-lockfile
-RUN cd /temp/dev && bun prisma generate
+#RUN cd /temp/dev && bun prisma generate
 
 # install with --production (exclude devDependencies)
 RUN mkdir -p /temp/prod
 COPY package.json bun.lockb /temp/prod/
-COPY prisma /temp/prod/prisma
+#COPY prisma /temp/prod/prisma
 
 RUN cd /temp/prod && bun install --frozen-lockfile --production
-RUN cd /temp/prod && bun prisma generate
+#RUN cd /temp/prod && bun prisma generate
 
 # copy node_modules from temp directory
 # then copy all (non-ignored) project files into the image
@@ -54,7 +54,7 @@ RUN apt-get update -y && apt-get install -y openssl
 COPY --from=install /temp/prod/node_modules node_modules
 COPY --from=prerelease /usr/src/pylon/.pylon .pylon
 COPY --from=prerelease /usr/src/pylon/package.json .
-COPY --from=prerelease /usr/src/pylon/prisma prisma
+#COPY --from=prerelease /usr/src/pylon/prisma prisma
 
 # run the app
 USER bun

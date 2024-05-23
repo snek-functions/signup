@@ -1,42 +1,37 @@
 {
-  "name": "@snek-functions/template",
-  "baseURL": "https://schettn-special-umbrella-q66979jv7gh4w59-3000.preview.app.github.dev",
+  "name": "@cronitio/pylon-template",
   "version": "0.0.1",
   "type": "module",
   "description": "Generated with `sf new`",
-  "author": "snek-at",
-  "exports": {
-    "./client": "./src/client/index.ts",
-    "./package.json": "./package.json"
-  },
-  "typesVersions": {
-    "*": {
-      "./client": [
-        "./src/client/index.ts"
-      ]
-    }
+  "author": "Netsnek <opensource@netsnek.com>",
+  "pylon": {
+    "external": [
+      "@cronitio/pylon"
+    ]
   },
   "files": [
-    "src/client",
     "package.json"
   ],
-  "config": {
-    "commitizen": {
-      "path": "git-cz"
-    }
-  },
   "dependencies": {
-    "@snek-at/function": "*",
-    "@snek-at/function-cli": "*",
-    "@snek-at/function-server": "*"
+    "@cronitio/pylon": "*",
+    "@cronitio/pylon-builder": "*",
+    "@cronitio/pylon-server": "*",
+    "@netsnek/prisma-repository": "^0.0.41",
+    "joi": "^17.13.1",
+    "jszip": "^3.10.1",
+    "slugify": "^1.6.6",
+    "validator": "^13.11.0"
   },
   "devDependencies": {
     "commitizen": "^4.2.5",
-    "git-cz": "^4.9.0",
-    "snek-query": "^0.0.53"
+    "@cronitio/pylon-cli": "*",
+    "@types/validator": "^13.11.5"
   },
   "scripts": {
-    "develop": "yarn sf develop",
-    "build": "yarn sf build"
+    "develop": "mkdir -p .pylon && bun run pylon develop",
+    "build": "mkdir -p .pylon && bun run pylon build"
+  },
+  "prisma": {
+    "schema": "prisma/schema.prisma"
   }
 }

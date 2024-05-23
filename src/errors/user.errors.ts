@@ -1,5 +1,5 @@
 // errors/user.errors.ts
-import { ServiceError } from "@snek-at/function";
+import { ServiceError } from "@cronitio/pylon";
 
 export class UserNotFoundError extends ServiceError {
   constructor(id: string) {
@@ -8,7 +8,17 @@ export class UserNotFoundError extends ServiceError {
     super(message, {
       statusCode: 404,
       code: "USER_NOT_FOUND",
-      message,
+    });
+  }
+}
+
+export class EmailOrUsernameAlreadyExistsError extends ServiceError {
+  constructor(loginName: string) {
+    const message = `Email or username'${loginName}' already exists.`;
+
+    super(message, {
+      code: "EMAILORUSERNAMEALREADYEXISTS_ERROR",
+      statusCode: 403,
     });
   }
 }

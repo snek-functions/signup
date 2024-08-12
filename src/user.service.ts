@@ -120,7 +120,7 @@ export class UserService {
           ...(values.hashedPassword ? { hashedPassword: { value: values.hashedPassword } } : {}),
           email: {
             email: values.emailAddress,
-            isEmailVerified: false,
+            isEmailVerified: skipEmailVerification || false,
           },
           ...(values.password
             ? {
